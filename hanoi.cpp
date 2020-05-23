@@ -1,8 +1,9 @@
+//ë°±ì¤€
 #include <iostream>
 #include <cmath>
 using namespace std;
 
-int n;//¼­·Î ´Ù¸¥ n°³ÀÇ ¿øÆÇÀÌ ³õ¿©ÀÖ´Ù.
+int n;//ì„œë¡œ ë‹¤ë¥¸ nê°œì˜ ì›íŒì´ ë†“ì—¬ìˆë‹¤.
 void hanoi(int num, int from, int tmp, int to)
 {
 	
@@ -14,9 +15,9 @@ void hanoi(int num, int from, int tmp, int to)
 		return;
 	}
 
-	hanoi(num - 1, from,to,tmp);//¹«´õ±â¸¦ 1->2¿¡ ½×¾Æ³õ°í
-	cout << from << " " << to << "\n";//¸Ç¸¶Áö¸· Ä£±¸¸¦ ½×´Â´Ù
-	hanoi(num - 1, tmp,from,to);//2¿¡ ÀÖ´Â ¹«´õ±â¸¦ 3À¸·Î ¿Å±ä´Ù
+	hanoi(num - 1, from,to,tmp);//ë¬´ë”ê¸°ë¥¼ 1->2ì— ìŒ“ì•„ë†“ê³ 
+	cout << from << " " << to << "\n";//ë§¨ë§ˆì§€ë§‰ ì¹œêµ¬ë¥¼ ìŒ“ëŠ”ë‹¤
+	hanoi(num - 1, tmp,from,to);//2ì— ìˆëŠ” ë¬´ë”ê¸°ë¥¼ 3ìœ¼ë¡œ ì˜®ê¸´ë‹¤
 }
 
 int main()
@@ -24,7 +25,7 @@ int main()
 	ios::sync_with_stdio(0);
 	cin.tie(0);
 	cin >> n;
-	//±âµÕ¿¡ ¿øÆÇ ³Ö±â, data ÀÔ·Â
+	//ê¸°ë‘¥ì— ì›íŒ ë„£ê¸°, data ì…ë ¥
 	cout << (int)pow(2, n) - 1 << endl;
 	hanoi(n, 1,2,3);
 	return 0;
