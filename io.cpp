@@ -1,8 +1,6 @@
 #include <iostream>
-
+#include <string>
 using namespace std;
-
-
 int main()
 {
   //2557: Hello world
@@ -62,7 +60,13 @@ int main()
 // //2,2 공백없이 이어져 있어서
 // //A를 2,2로 인식하기 때문에 오류남
 
-//
+//11718: 그대로 출력하기
+string text;
+
+while (getline(cin, text)) {
+cout << text << endl;
+//cout<<getline(cin, text)<<endl;
+}
 
 
   return 0;
