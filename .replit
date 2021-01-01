@@ -1,2 +1,2 @@
 language = "cpp"
-run = "g++ io.cpp;./a.out"
+run = "g++ sample.cpp;./a.out"
