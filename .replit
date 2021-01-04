@@ -1,2 +1,2 @@
 language = "cpp"
-run = "g++ dongbinna_CT/숫자카드게임.cpp;./a.out"
+run = "g++ dongbinna_CT/구현/상하좌우.cpp;./a.out"
