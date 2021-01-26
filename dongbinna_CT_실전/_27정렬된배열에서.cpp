@@ -20,6 +20,12 @@ int main()
 	vector<int>::iterator right =upper_bound(v.begin(), v.end(), x);//iter형
 	vector<int>::iterator left=lower_bound(v.begin(), v.end(), x);
 	int ans=right - left;
+	if(ans==0)
+	{	
+		cout<<-1<<endl;
+		return 0;
+	}
+	
 	cout << ans << endl;
 	
 	return 0;
