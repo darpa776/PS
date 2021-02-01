@@ -1,0 +1,74 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <vector>
+#include <queue>
+#define INF 1e9
+using namespace std;
+
+int map[201];
+int d[201];
+int graph[201][201];//인접행렬
+priority_queue<pair<int,  int>> pq;
+//거리, 헛간 번호
+
+int main() 
+{
+		int n,m;
+		cin >> n>>m;
+		
+		for (int i = 1; i <= m; i++) {
+			int x, y;
+			cin >> x >> y;
+			graph[x][y] = 1;
+			graph[y][x] = 1;
+		}
+		fill_n(d, 201, INF);
+		for (int i = 1; i <= n; i++) {
+			graph[i][i] = 0;
+		}
+		//1번 헛간에서 출발해 가장 멀리 가보자
+		d[1] = 0;
+		pq.push({ d[1],1 });
+		while (!pq.empty())
+		{
+			int dist = -pq.top().first;
+			int num = pq.top().second;
+			pq.pop();
+			if (d[num] < dist) continue;
+			for (int i = 1; i <= n; i++) {
+				if (graph[num][i])
+				{
+					
+					
+					if (d[i]>d[num]+1)
+					{
+						d[i] = d[num] + 1;//또는 d[i]를 그대로 유지, 갱신되는 경우만 큐에 넣는다.
+						pq.push({ -d[i],i });
+					}
+				}
+			}
+		}
+		int answer_dist = 0;
+		int answer_num;
+		//숨어야하는 헛간번호, 거리 출력
+		for (int i = 1; i <= n; i++) {
+			if (answer_dist < d[i]){
+				answer_dist = d[i];
+				answer_num = i;
+			}
+			
+		}
+
+		//같은거리를 갖는 헛간의 개수
+		int cnt = 0;
+		for (int i = 1; i <= n; i++) {
+			if (answer_dist == d[i]) {
+				cnt++;
+			}
+		}
+		cout <<answer_num<<" "<<answer_dist << " " << cnt << endl;
+	return 0;
+}
+
+//동빈버전: https://github.com/ndb796/python-for-coding-test/blob/master/17/4.cpp
