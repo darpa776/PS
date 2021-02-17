@@ -7,38 +7,38 @@
 #include <string.h>
 
 using namespace std;
-int sx, sy;//½ÃÀÛÁ¡
+int sx, sy;//ì‹œì‘ì 
 int T, test_case;
 int ans;
 bool visited[20][20];
-int n;//ÇÑº¯ÀÇ ±æÀÌ
+int n;//í•œë³€ì˜ ê¸¸ì´
 int map[20][20];
 //int direction[4];
-//find ÇÔ¼ö»ç¿ë, ¿ø¼Ò ÀÖÀ¸¸é contine½á¼­ ´ÙÀ½ for¹®
+//find í•¨ìˆ˜ì‚¬ìš©, ì›ì†Œ ìˆìœ¼ë©´ contineì¨ì„œ ë‹¤ìŒ forë¬¸
 vector<int> dessert;
 
-//´ë°¢¼± ¾Æ·¡ ÁÂÃø,¿ìÃø, À§ ¿ìÃø, ÁÂÃø
+//ëŒ€ê°ì„  ì•„ë˜ ì¢Œì¸¡,ìš°ì¸¡, ìœ„ ìš°ì¸¡, ì¢Œì¸¡
 int dx[4] = { 1,1,-1,-1 };
 int dy[4] = { -1,1,1,-1 };
 //pair<int, int> start;
 
-//0,0ºÎÅÍ ½ÃÀÛÇØ¼­ dfs ÇØ³ª°¡±â
+//0,0ë¶€í„° ì‹œì‘í•´ì„œ dfs í•´ë‚˜ê°€ê¸°
 void dfs(int x, int y, int len, int dir)
 {
 	for (int i = 0; i < 2; ++i)
-	{//nx,ny ¼³Á¤
+	{//nx,ny ì„¤ì •
 		int nx, ny;
 
-		if (i == 0)//¹æÇâÀ¯Áö
+		if (i == 0)//ë°©í–¥ìœ ì§€
 		{
 			nx = x + dx[dir];
 			ny = y + dy[dir];
-			//dirÀº ±×´ë·Î
+			//dirì€ ê·¸ëŒ€ë¡œ
 		}
 
-		else if (i == 1)//¹æÇâº¯°æ
+		else if (i == 1)//ë°©í–¥ë³€ê²½
 		{
-			// ½ÃÀÛ³ëµå´Â ¹æÇâÀüÈ¯ X
+			// ì‹œì‘ë…¸ë“œëŠ” ë°©í–¥ì „í™˜ X
 			if (x == sx && y == sy) continue;
 
 		
@@ -53,10 +53,10 @@ void dfs(int x, int y, int len, int dir)
 			ans = max(ans, len);	return;
 		}
 
-		if (nx < 0 || ny < 0 || nx >= n || ny >= n)//map ¿ÜºÎÀÌ¸é
+		if (nx < 0 || ny < 0 || nx >= n || ny >= n)//map ì™¸ë¶€ì´ë©´
 			continue;
 
-		if (dessert.end() !=find(dessert.begin(), dessert.end(), map[nx][ny]))//¸Ô¾ú´ø ¸Ş´ºÀÎ°æ¿ì
+		if (dessert.end() !=find(dessert.begin(), dessert.end(), map[nx][ny]))//ë¨¹ì—ˆë˜ ë©”ë‰´ì¸ê²½ìš°
 			continue;
 
 		if (!visited[nx][ny]) {
@@ -81,7 +81,7 @@ int main() {
 			for (int j = 0; j < n; ++j)
 				cin >> map[i][j];
 
-		//0,0ºÎÅÍ ½ÃÀÛÇØ¼­ dfs ÇØ³ª°¡±â
+		//0,0ë¶€í„° ì‹œì‘í•´ì„œ dfs í•´ë‚˜ê°€ê¸°
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
 				visited[i][j] = true;
@@ -96,7 +96,7 @@ int main() {
 		++test_case;
 		cout << "#" << test_case << " " << ans << endl;
 
-		//ÃÊ±âÈ­
+		//ì´ˆê¸°í™”
 		ans = -1;
 		dessert.clear();
 		for (int i = 0; i < n; ++i)
