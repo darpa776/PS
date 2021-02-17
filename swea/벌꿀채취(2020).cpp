@@ -3,16 +3,16 @@
 #include <vector>
 #include <algorithm>
 #include <queue>
-// (3 ¡Â N ¡Â 10)
-// (1 ¡Â M ¡Â 5)
-//(10 ¡Â C ¡Â 30)
+// (3 â‰¤ N â‰¤ 10)
+// (1 â‰¤ M â‰¤ 5)
+//(10 â‰¤ C â‰¤ 30)
 
 using namespace std;
-int map[10][10];//¹úÅëµé
+int map[10][10];//ë²Œí†µë“¤
 int T, test_case;
 int ans;
 int n, m, c;
-bool visited[6];//¹úÅë
+bool visited[6];//ë²Œí†µ
 int sum;
 bool check[100];//n*n
 
@@ -22,17 +22,17 @@ typedef struct node{
 
 vector<node> profit_list;
 
-void honey(int x, int y, int idx, int cnt, int t)//m°³ ´Ù Á¶ÇÕÇØº¸±â
-{//https://yabmoons.tistory.com/99 ÀÀ¿ë
+void honey(int x, int y, int idx, int cnt, int t)//mê°œ ë‹¤ ì¡°í•©í•´ë³´ê¸°
+{//https://yabmoons.tistory.com/99 ì‘ìš©
 	if (cnt == t)
 	{
 		//print();
-		//visited==trueÀÎ°Í Ãâ·ÂÇÏ±â
-		int tmp = 0;//sumÀ» À§ÇÑ tmp
-		int crit=0;//c¸¦ À§ÇÑ ²ÜÀÇ ÇÕ
+		//visited==trueì¸ê²ƒ ì¶œë ¥í•˜ê¸°
+		int tmp = 0;//sumì„ ìœ„í•œ tmp
+		int crit=0;//cë¥¼ ìœ„í•œ ê¿€ì˜ í•©
 		for(int k = 0; k < 6; ++k)
 		{
-			if (visited[k])// k:¼±ÅÃÇÒ ÅëÀÇ index
+			if (visited[k])// k:ì„ íƒí•  í†µì˜ index
 			{
 				tmp += pow((map[x][y + k]),2);
 				crit += map[x][y + k];
@@ -59,20 +59,20 @@ void honey(int x, int y, int idx, int cnt, int t)//m°³ ´Ù Á¶ÇÕÇØº¸±â
 }
 bool Compare(node& first, node& second)
 {
-	return first.profit > second.profit; // ºñ±³ÇÏ°í ½ÍÀº T Å¸ÀÔÀÇ µ¥ÀÌÅÍ ¸â¹ö¸¦ ºñ±³ÇØ¾ß ÇÑ´Ù
+	return first.profit > second.profit; // ë¹„êµí•˜ê³  ì‹¶ì€ T íƒ€ì…ì˜ ë°ì´í„° ë©¤ë²„ë¥¼ ë¹„êµí•´ì•¼ í•œë‹¤
 }
 
-//ÃâÃ³: https://celdee.tistory.com/281 [³¯°³ÀÇ ±â¾ï]
+//ì¶œì²˜: https://celdee.tistory.com/281 [ë‚ ê°œì˜ ê¸°ì–µ]
 
 
 void comb(int idx, int cnt)
 {//https://yabmoons.tistory.com/99
 	
-	if (cnt == 2)//2°³°í¸£±â
+	if (cnt == 2)//2ê°œê³ ë¥´ê¸°
 	{
 		int tmp = 0;
 		//print();
-		//check==trueÀÎ°Í ´õÇØ¼­ max==ans
+		//check==trueì¸ê²ƒ ë”í•´ì„œ max==ans
 		int flag = 0;
 		int a, b;
 		for (int k = 0; k < profit_list.size(); ++k)
@@ -80,7 +80,7 @@ void comb(int idx, int cnt)
 			if (check[k])
 			{
 				++flag;
-				if (flag == 1)//Ã¹¹øÂ° À§Ä¡
+				if (flag == 1)//ì²«ë²ˆì§¸ ìœ„ì¹˜
 					a = k;
 				if (flag == 2)
 					b = k;
@@ -89,15 +89,15 @@ void comb(int idx, int cnt)
 		}
 
 
-		if (profit_list[a].x == profit_list[b].x)//°°Àº ¿­ÀÌ°í
+		if (profit_list[a].x == profit_list[b].x)//ê°™ì€ ì—´ì´ê³ 
 		{
-			if (profit_list[a].y + m <= profit_list[b].y)//¹üÀ§°¡ ¾È°ãÄ¡¸é
+			if (profit_list[a].y + m <= profit_list[b].y)//ë²”ìœ„ê°€ ì•ˆê²¹ì¹˜ë©´
 			{
 				tmp = profit_list[a].profit + profit_list[b].profit;
 				ans = max(ans, tmp);
 			}
 		}
-		else//´Ù¸¥¿­ÀÌ¸é Á¶ÇÕÀ» ¹«Á¶°Ç »ç¿ëÇÏ¸é µÊ
+		else//ë‹¤ë¥¸ì—´ì´ë©´ ì¡°í•©ì„ ë¬´ì¡°ê±´ ì‚¬ìš©í•˜ë©´ ë¨
 		{
 			tmp = profit_list[a].profit + profit_list[b].profit;
 			ans = max(ans, tmp);
@@ -105,7 +105,7 @@ void comb(int idx, int cnt)
 	
 		return;
 	}
-	for (int i = idx; i < profit_list.size(); ++i)//profit_list.size()Áß¿¡¼­ 2°³ °í¸£±â
+	for (int i = idx; i < profit_list.size(); ++i)//profit_list.size()ì¤‘ì—ì„œ 2ê°œ ê³ ë¥´ê¸°
 	{
 		if (check[i] == true) continue;
 		check[i] = true;
@@ -134,7 +134,7 @@ int main() {
 			{
 				for (int l = 1; l <= m; ++l)
 				{
-					honey(i, j, 0, 0, l);//°¢(i,j)À§Ä¡º°·Î m°³ÀÇ Åë Áß¿¡ ¼±ÅÃÇÒ index¿¡¼­ Á¶ÇÕÇØº¸±â
+					honey(i, j, 0, 0, l);//ê°(i,j)ìœ„ì¹˜ë³„ë¡œ mê°œì˜ í†µ ì¤‘ì— ì„ íƒí•  indexì—ì„œ ì¡°í•©í•´ë³´ê¸°
 				}
 				node a;
 				a.x = i; a.y = j; a.profit = sum;
@@ -143,17 +143,17 @@ int main() {
 				sum = 0;
 			}
 		}
-		//¸ğµç ÀÌÀÍµéÀ» Å« ¼ø¼­´ë·Î Á¤·ÄÇÔ
-		//sort(profit_list.begin(), profit_list.end(), Compare);//profit±âÁØÀ¸·Î Á¤·Ä setting
-		//¾îÂ÷ÇÇ ´Ù Á¶ÇÕÇØº¼°Å´Ï±î sortingÇØº¼ÇÊ¿ä ¾øÀ» µí
+		//ëª¨ë“  ì´ìµë“¤ì„ í° ìˆœì„œëŒ€ë¡œ ì •ë ¬í•¨
+		//sort(profit_list.begin(), profit_list.end(), Compare);//profitê¸°ì¤€ìœ¼ë¡œ ì •ë ¬ setting
+		//ì–´ì°¨í”¼ ë‹¤ ì¡°í•©í•´ë³¼ê±°ë‹ˆê¹Œ sortingí•´ë³¼í•„ìš” ì—†ì„ ë“¯
 		
-		//Á¶ÇÕ½á¼­ ¹üÀ§°¡ °ãÄ¡´ÂÁö È®ÀÎ
+		//ì¡°í•©ì¨ì„œ ë²”ìœ„ê°€ ê²¹ì¹˜ëŠ”ì§€ í™•ì¸
 		int tmp=0;
 		comb(0, 0);
 		
 		++test_case;
 		cout << "#" << test_case << " " << ans << endl;
-		//ÃÊ±âÈ­
+		//ì´ˆê¸°í™”
 		ans = 0;
 		profit_list.clear();
 
