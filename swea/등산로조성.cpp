@@ -10,7 +10,7 @@ int T, h, test_case, k, n;
 int map[8][8];
 vectorpairint, int max_pos;
 
-int dx[4] = { -1, 1,0,0 }; »óÇÏÁÂ¿ì
+int dx[4] = { -1, 1,0,0 }; ìƒí•˜ì¢Œìš°
 int dy[4] = { 0,0,-1,1 };
 int visited[8][8];
 int ans;
@@ -19,31 +19,31 @@ int dfs(int x, int y, int len, int cut)
 	ans = max(ans, len);
 	visited[x][y] = true;
 
-	a, b ÀÌ¿ëÇØ¼­ »ç¹æ Å½»ö
+	a, b ì´ìš©í•´ì„œ ì‚¬ë°© íƒìƒ‰
 		for (int i = 0; i 4; ++i)
 		{
 			int nx = x + dx[i];
 			int ny = y + dy[i];
 
-			¸Ê ¹ÛÀ» ¹ş¾î³­´Ù¸é
+			ë§µ ë°–ì„ ë²—ì–´ë‚œë‹¤ë©´
 				if (nx  0  ny  0  nx = n  ny = n) continue;
-			cut°ú »ó°ü¾øÀÌ ÇØ´çÁÂÇ¥ÀÇ ÁÖº¯ÀÌ ºÀ¿ì¸®º¸´Ù ³·°í ¹æ¹®ÇÑ ÀûÀÌ ¾øÀ¸¸é
+			cutê³¼ ìƒê´€ì—†ì´ í•´ë‹¹ì¢Œí‘œì˜ ì£¼ë³€ì´ ë´‰ìš°ë¦¬ë³´ë‹¤ ë‚®ê³  ë°©ë¬¸í•œ ì ì´ ì—†ìœ¼ë©´
 				if (!visited[nx][ny])
 				{
 					if (map[x][y]  map[nx][ny])
 					{
 						visited[nx][ny] = true;
-						dfs(nx, ny, len + 1, cut); µî»ê·Î ÀÕ±â, ±ğÁö ¾ÊÀ½
+						dfs(nx, ny, len + 1, cut); ë“±ì‚°ë¡œ ì‡ê¸°, ê¹ì§€ ì•ŠìŒ
 							visited[nx][ny] = false;
 					}
-					else if (!cut && (map[x][y]  map[nx][ny] - k))ÃÖ´ë k¸¸Å­ ±ğ¾Ò´Âµ¥µµ ºÀ¿ì¸®º¸´Ù ³ôÀ¸¸é pass.
-						±ğ¾ÒÀ» ¶§ ºÀ¿ì¸®º¸´Ù ³·À» °æ¿ì&& ¾È±ğÀ» ¶§
+					else if (!cut && (map[x][y]  map[nx][ny] - k))ìµœëŒ€ kë§Œí¼ ê¹ì•˜ëŠ”ë°ë„ ë´‰ìš°ë¦¬ë³´ë‹¤ ë†’ìœ¼ë©´ pass.
+						ê¹ì•˜ì„ ë•Œ ë´‰ìš°ë¦¬ë³´ë‹¤ ë‚®ì„ ê²½ìš°&& ì•ˆê¹ì„ ë•Œ
 					{
 						visited[nx][ny] = true;
-					int t = map[nx][ny]; º¯°æÇÒ À§Ä¡ÀÇ ³ôÀÌ ÀúÀå
-						map[nx][ny] = map[x][y] - 1; ÇöÀç ³ôÀÌ¸¦ ÃÖ´ë³ôÀÌ º¸´Ù ³·°Ô º¯°æ
-						dfs(nx, ny, len + 1, 1); ±ğÀ» ¶§ 1, ¾È±ğÀ» ¶§ 0
-						map[nx][ny] = t; ¿ø»óº¹±Í
+					int t = map[nx][ny]; ë³€ê²½í•  ìœ„ì¹˜ì˜ ë†’ì´ ì €ì¥
+						map[nx][ny] = map[x][y] - 1; í˜„ì¬ ë†’ì´ë¥¼ ìµœëŒ€ë†’ì´ ë³´ë‹¤ ë‚®ê²Œ ë³€ê²½
+						dfs(nx, ny, len + 1, 1); ê¹ì„ ë•Œ 1, ì•ˆê¹ì„ ë•Œ 0
+						map[nx][ny] = t; ì›ìƒë³µê·€
 						visited[nx][ny] = false;
 					}
 				}
@@ -65,33 +65,33 @@ int main() {
 			{
 				cin map[i][j];
 				if (max_  map[i][j])
-					max_ = map[i][j]; ºÀ¿ì¸®µéÀÇ ÃÖ´ñ°ªÀ» ÀúÀå
+					max_ = map[i][j]; ë´‰ìš°ë¦¬ë“¤ì˜ ìµœëŒ“ê°’ì„ ì €ì¥
 			}
 		}
 
-		³ôÀÌ°¡ ÃÖ´ëÀÎ °÷ ¾Ë¾Æ³»±â
+		ë†’ì´ê°€ ìµœëŒ€ì¸ ê³³ ì•Œì•„ë‚´ê¸°
 			for (int i = 0; i n; ++i)
 			{
 				for (int j = 0; j n; ++j)
 				{
 					if (max_ == map[i][j])
-						max_pos.push_back(make_pair(i, j)); ³ôÀÌ°¡ ÃÖ´ëÀÎ °÷ À§Ä¡ ÀúÀå
+						max_pos.push_back(make_pair(i, j)); ë†’ì´ê°€ ìµœëŒ€ì¸ ê³³ ìœ„ì¹˜ ì €ì¥
 				}
 			}
 		int cnt = max_pos.size();
-		max_pos¿¡¼­ À§Ä¡ ºÒ·¯¿À±â
+		max_posì—ì„œ ìœ„ì¹˜ ë¶ˆëŸ¬ì˜¤ê¸°
 			for (int i = 0; i cnt; ++i)
 			{
-				º¤ÅÍ ¾ÈÀÇ ³»¿ë ¼ø¼­´ë·Î ºÒ·¯¿À±â
+				ë²¡í„° ì•ˆì˜ ë‚´ìš© ìˆœì„œëŒ€ë¡œ ë¶ˆëŸ¬ì˜¤ê¸°
 					int x = max_pos[i].first;
 				int y = max_pos[i].second;
 				dfs(x, y, 1, 0);
 			}
-		max_pos.clear(); º¤ÅÍ ºñ¿ì±â
+		max_pos.clear(); ë²¡í„° ë¹„ìš°ê¸°
 
 			++test_case;
 		cout# test_case  ansendl;
-		ans = 0; ÃÊ±âÈ­
+		ans = 0; ì´ˆê¸°í™”
 
 	}
 	return 0;
