@@ -10,7 +10,7 @@ bool visited[21][21];
 
 int dx[4] = { -1,1,0,0 };
 int dy[4] = { 0,0,-1,1 };
-//»óÇÏÁÂ¿ì
+//ìƒí•˜ì¢Œìš°
 int home;
 //int profit;
 void simul(int x, int y)
@@ -21,15 +21,15 @@ void simul(int x, int y)
 
 	q.push(make_pair(x, y));
 	visited[x][y] = 1;
-	if (map[x][y])//ÁıÀÌ ÀÖ´Ù¸é
+	if (map[x][y])//ì§‘ì´ ìˆë‹¤ë©´
 		++home;
-	tmp = m * home - (pow(k, 2) + pow(k - 1, 2));//ÀÌÀÍ°è»ê
-	if (tmp >= 0)//Áö±İ °è»êÇÑ°Ô ´õ Å©¸é
-		ans = max(home, ans);//´ä °»½Å
+	tmp = m * home - (pow(k, 2) + pow(k - 1, 2));//ì´ìµê³„ì‚°
+	if (tmp >= 0)//ì§€ê¸ˆ ê³„ì‚°í•œê²Œ ë” í¬ë©´
+		ans = max(home, ans);//ë‹µ ê°±ì‹ 
 	int q_size = 1;
 	while (!q.empty())
 	{
-		++k;// k++¿µ¿ª¿¬»ê
+		++k;// k++ì˜ì—­ì—°ì‚°
 		while (q_size--)
 		{
 			int now_x = q.front().first;
@@ -37,15 +37,15 @@ void simul(int x, int y)
 			q.pop();
 			//if (visited[now_x][now_y] >= n + 1) return;
 			for (int i = 0; i < 4; ++i)
-			{	//nx,ny ¼³Á¤
+			{	//nx,ny ì„¤ì •
 				int nx = now_x + dx[i];
 				int ny = now_y + dy[i];
-				//¿¹¿ÜÃ³¸®
-				if (nx < 0 || ny < 0 || nx >= n || ny >= n)//nx,ny°¡ mapÀ» ¹ş¾î³ª¸é
+				//ì˜ˆì™¸ì²˜ë¦¬
+				if (nx < 0 || ny < 0 || nx >= n || ny >= n)//nx,nyê°€ mapì„ ë²—ì–´ë‚˜ë©´
 					continue;
-				if (!visited[nx][ny])//¹æ¹®ÇÏÁö ¾ÊÀº °÷ÀÌ°í
+				if (!visited[nx][ny])//ë°©ë¬¸í•˜ì§€ ì•Šì€ ê³³ì´ê³ 
 				{
-					if (map[nx][ny])//ÁıÀÌ ÀÖ´Ù¸é
+					if (map[nx][ny])//ì§‘ì´ ìˆë‹¤ë©´
 						++home;
 					visited[nx][ny] = 1;
 					q.push(make_pair(nx, ny));
@@ -55,12 +55,12 @@ void simul(int x, int y)
 
 		if (k <= n + 1)
 		{
-			tmp = m * home - (pow(k, 2) + pow(k - 1, 2));//ÀÌÀÍ°è»ê
+			tmp = m * home - (pow(k, 2) + pow(k - 1, 2));//ì´ìµê³„ì‚°
 			if (tmp >= 0)
-				ans = max(home, ans);//´ä °»½Å
+				ans = max(home, ans);//ë‹µ ê°±ì‹ 
 		}
-		//or¿¬»êÀ¸·Î Áı ¸î°³°¡ ¿µ¿ª¾È¿¡ ÀÖ´ÂÁö ¾Ë¾Æ³»±â
-		//mask Å°¿ï ¶§ ¸¶´Ù º¸¾ÈÈ¸»çÀÇ ÀÌÀÍ°ú ÃÖ´ë°ªÀ» ºñ±³/ÀúÀå
+		//orì—°ì‚°ìœ¼ë¡œ ì§‘ ëª‡ê°œê°€ ì˜ì—­ì•ˆì— ìˆëŠ”ì§€ ì•Œì•„ë‚´ê¸°
+		//mask í‚¤ìš¸ ë•Œ ë§ˆë‹¤ ë³´ì•ˆíšŒì‚¬ì˜ ì´ìµê³¼ ìµœëŒ€ê°’ì„ ë¹„êµ/ì €ì¥
 		else
 			return;
 		
@@ -76,7 +76,7 @@ int main()
 	int T;
 	cin >> T;
 
-	//ÀÔ·ÂÀ¸·Î n,m,map
+	//ì…ë ¥ìœ¼ë¡œ n,m,map
 	while (test_case < T)
 	{
 		cin >> n >> m;
@@ -92,7 +92,7 @@ int main()
 			for (int j = 0; j < n; ++j)
 			{
 				simul(i, j);
-				//ÃÊ±âÈ­
+				//ì´ˆê¸°í™”
 				home = 0;
 				
 				for (int i = 0; i < n; ++i) 
@@ -101,7 +101,7 @@ int main()
 		}
 		cout << "#" << ++test_case << " " << ans << endl;
 
-		//ÃÊ±âÈ­
+		//ì´ˆê¸°í™”
 		ans = 0;
 		for (int i = 0; i < n; ++i) {
 
