@@ -2,11 +2,11 @@
 
 using namespace std;
 
-int n;//Ä«µå Àå¼ö
-int m;//ÃÖ´ë°ª
+int n;//ì¹´ë“œ ì¥ìˆ˜
+int m;//ìµœëŒ€ê°’
 int visited[101];
-int sum,ans;//case ³¡³¯¶§¸¶´Ù ÃÊ±âÈ­
-int flag;//ÇÑ¹ø¿¡ Á¾·áÀ§ÇÑ º¯¼ö
+int sum,ans;//case ëë‚ ë•Œë§ˆë‹¤ ì´ˆê¸°í™”
+int flag;//í•œë²ˆì— ì¢…ë£Œìœ„í•œ ë³€ìˆ˜
 int card[101];
 
 void dfs(int num, int selected)
@@ -33,7 +33,7 @@ void dfs(int num, int selected)
 			
 			return;
 		}
-		return;//***ÀÌ°Å ²ÀÇØÁÖ±â...ÀÌ°Å ¾ÈÇØÁà¼­ ½Ã°£ÃÊ°ú ³²
+		return;//***ì´ê±° ê¼­í•´ì£¼ê¸°...ì´ê±° ì•ˆí•´ì¤˜ì„œ ì‹œê°„ì´ˆê³¼ ë‚¨
 
 	}
 	for (int i = num; i < n; ++i)
@@ -60,7 +60,7 @@ int main()
 	cin >> m;*/
 	scanf("%d", &n);
 	scanf("%d", &m);
-	//Ä«µå ³»¿ë
+	//ì¹´ë“œ ë‚´ìš©
 	for (int i = 0; i < n; ++i)
 	{
 		//cin >> card[i];
@@ -69,7 +69,7 @@ int main()
 	dfs(0, 0);
 	printf("%d", ans);
 
-	//ÃÊ±âÈ­(»ï¼º Ä¥¶§´Â ²À Ã¬±â±â)
+	//ì´ˆê¸°í™”(ì‚¼ì„± ì¹ ë•ŒëŠ” ê¼­ ì±™ê¸°ê¸°)
 	/*ans = 0;
 	sum = 0;
 	for (int i = 0; i < n; ++i)
