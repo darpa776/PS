@@ -14,7 +14,7 @@ int main()
 	int now;
 	while (!q.empty())
 	{
-		//¼¼ °æ¿ì ¸ðµÎ ´Ù ¹æ¹®ÇÑ °æ¿ì¿¡´Â ÇÑ¹ÙÄû µ¹°í³ª¼­ popÇÏ°Ô µÊ
+		//ì„¸ ê²½ìš° ëª¨ë‘ ë‹¤ ë°©ë¬¸í•œ ê²½ìš°ì—ëŠ” í•œë°”í€´ ëŒê³ ë‚˜ì„œ popí•˜ê²Œ ë¨
 		now = q.front();
 		q.pop();
 		if (now == k)
@@ -28,10 +28,10 @@ int main()
 				
 			}
 		}
-		if (now + 1 <= MAX)//check[MAX]¿¡ Á¢±ÙÇÒ ¼ö ¾ø°í check[MAX-1]°¡ ÃÖ´ë ÀÎµ¦½ºÀÌ±â ¶§¹®¿¡
-			//Ç×»ó µîÈ£°¡ ¾ø¾î¾ß ¼º¸³ÇÑ´Ù.µîÈ£°¡ ÀÖÀ» ¶§µµ ¼º¸³ÇÏ´Â °ÍÀº MAXÁ¤µµÀÇ ÀÎµ¦½º±îÁö Á¢±ÙÇÏÁö ¾Ê±â ¶§¹®
+		if (now + 1 <= MAX)//check[MAX]ì— ì ‘ê·¼í•  ìˆ˜ ì—†ê³  check[MAX-1]ê°€ ìµœëŒ€ ì¸ë±ìŠ¤ì´ê¸° ë•Œë¬¸ì—
+			//í•­ìƒ ë“±í˜¸ê°€ ì—†ì–´ì•¼ ì„±ë¦½í•œë‹¤.ë“±í˜¸ê°€ ìžˆì„ ë•Œë„ ì„±ë¦½í•˜ëŠ” ê²ƒì€ MAXì •ë„ì˜ ì¸ë±ìŠ¤ê¹Œì§€ ì ‘ê·¼í•˜ì§€ ì•Šê¸° ë•Œë¬¸
 		{
-			if (check[now + 1]==0)//¹æ¹®¾ÈÇßÀ¸¸é ¹æ¹®ÇÏ±â
+			if (check[now + 1]==0)//ë°©ë¬¸ì•ˆí–ˆìœ¼ë©´ ë°©ë¬¸í•˜ê¸°
 			{
 				check[now + 1] = check[now] + 1;
 				q.push(now + 1);
