@@ -1,3 +1,4 @@
+//ë°±ì¤€ 14889ìŠ¤íƒ€íŠ¸ì™€ë§í¬ ë¬¸ì œì™€ ìœ ì‚¬
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -5,7 +6,7 @@ using namespace std;
 int T;
 int test_case = 1;
 int n;
-int map[17][17];//½ÄÀç·áÀÇ ¼ö NÀº 4ÀÌ»ó 16ÀÌÇÏÀÇ Â¦¼öÀÌ´Ù. 
+int map[17][17];//ì‹ì¬ë£Œì˜ ìˆ˜ Nì€ 4ì´ìƒ 16ì´í•˜ì˜ ì§ìˆ˜ì´ë‹¤. 
 int visited[17];
 vector<int> A;
 vector<int> B;
@@ -32,14 +33,14 @@ int cal()
 		}
 
 	}
-	//°¢ ¿ä¸®ÀÇ ÇÕÀ» °è»êÇßÀ¸´Ï ÀÌÁ¦´Â ½Ã³ÊÁö Â÷ÀÌ °è»ê
+	//ê° ìš”ë¦¬ì˜ í•©ì„ ê³„ì‚°í–ˆìœ¼ë‹ˆ ì´ì œëŠ” ì‹œë„ˆì§€ ì°¨ì´ ê³„ì‚°
 	result = sumA - sumB;
 	if (result < 0)
 		result = -result;
 	if (ans > result)
 		ans = result;
 	
-	//ÃÊ±âÈ­
+	//ì´ˆê¸°í™”
 	sumA = 0; sumB = 0;
 	A.clear(); B.clear();
 	return 0;
@@ -62,7 +63,7 @@ int dfs(int chk, int idx)
 	{
 		if (visited[i]) continue;
 		visited[i] = 1;
-		dfs(chk+1,i);//idx¿¡ i ³Ö´Â ÀÌÀ¯´Â: ÇöÀç À§Ä¡ºÎÅÍ Å½»öÇØ¼­ Áßº¹À» ÇÇÇÏ±â À§ÇÔÀÓ**
+		dfs(chk+1,i);//idxì— i ë„£ëŠ” ì´ìœ ëŠ”: í˜„ì¬ ìœ„ì¹˜ë¶€í„° íƒìƒ‰í•´ì„œ ì¤‘ë³µì„ í”¼í•˜ê¸° ìœ„í•¨ì„**
 		visited[i] = 0;
 	}
 	return 0;
@@ -83,7 +84,7 @@ int main() {
 
 		cout << "#" << test_case << " " << ans << endl;
 		test_case++;
-		//ÃÊ±âÈ­
+		//ì´ˆê¸°í™”
 		for (int i = 0; i < n; ++i) {
 			for (int j = 0; j < n; ++j) {
 				map[i][j]=0;
