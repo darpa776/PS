@@ -11,22 +11,22 @@ int ans;
 int map[50][50];
 int n, m, r, c, l;
 int visited[50][50];
-//»óÇÏÁÂ¿ì
+//ìƒí•˜ì¢Œìš°
 int dx[4] = {-1,1,0,0};
 int dy[4] = {0,0,-1,1};
 int nx, ny;
 queue<pair<int,int>> q;
-//x,y¿¡¼­ nx,ny·Î
-//»ó:(ÇÏ°¡ ¶Õ¸° °÷)1,2,5,6
-//ÇÏ:(»óÀÌ ¶Õ¸° °÷)1,2,4,7
-//ÁÂ:(¿ì°¡ ¶Õ¸° °÷)1,3,4,5
-//¿ì:(ÁÂ°¡ ¶Õ¸° °÷)1,3,6,7
+//x,yì—ì„œ nx,nyë¡œ
+//ìƒ:(í•˜ê°€ ëš«ë¦° ê³³)1,2,5,6
+//í•˜:(ìƒì´ ëš«ë¦° ê³³)1,2,4,7
+//ì¢Œ:(ìš°ê°€ ëš«ë¦° ê³³)1,3,4,5
+//ìš°:(ì¢Œê°€ ëš«ë¦° ê³³)1,3,6,7
 vector<vector<int>> dest = { {0,1,2,3}, {0,1},{2,3},{0,3},{1,3},{1,2},{0,2} };
 
 
 
 
-int go2(int nx,int ny, int i)//i´Â »óÇÏÁÂ¿ì¸¦ ³ªÅ¸³»´Â ÀÎµ¦½º
+int go2(int nx,int ny, int i)//iëŠ” ìƒí•˜ì¢Œìš°ë¥¼ ë‚˜íƒ€ë‚´ëŠ” ì¸ë±ìŠ¤
 {
 	if (i == 0)
 	{
@@ -59,7 +59,7 @@ void go(int x, int y)
 {
 	q.push(make_pair(x,y));
 	visited[x][y] = 1;
-	//¸ÇÈ¦¿¡¼­´Â 1½Ã°£±îÁö ÀÖ´Ù
+	//ë§¨í™€ì—ì„œëŠ” 1ì‹œê°„ê¹Œì§€ ìˆë‹¤
 
 	while (!q.empty()) {
 		int now_x = q.front().first;
@@ -68,15 +68,15 @@ void go(int x, int y)
 		q.pop();
 		if (map[now_x][now_y])//&&!visited[now_x][now_y]
 		{
-			for (int i = 0; i < dest[map[now_x][now_y]-1].size(); ++i)//map[now_x][now_y]==1ÀÌ¸é dest[0]À¸·Î Á¢±Ù
+			for (int i = 0; i < dest[map[now_x][now_y]-1].size(); ++i)//map[now_x][now_y]==1ì´ë©´ dest[0]ìœ¼ë¡œ ì ‘ê·¼
 			{
 				nx = now_x + dx[dest[map[now_x][now_y] - 1][i]];
 				ny = now_y + dy[dest[map[now_x][now_y] - 1][i]];
-				// ¸Ê ¹ÛÀ» ¹ş¾î³µ´Ù¸é
+				// ë§µ ë°–ì„ ë²—ì–´ë‚¬ë‹¤ë©´
 				if (nx < 0 || ny < 0 || nx >= n || ny >= m) continue;
-				//¿¬°áµÇ¾îÀÖ´ÂÁö È®ÀÎ
-				if (go2(nx, ny, dest[map[now_x][now_y]-1][i]) && !visited[nx][ny])//¿¬°á°¡´ÉÇÏ°í ¹æ¹®ÇÑÀû ¾ø´Â °æ¿ì
-				{//¿¬°áµÇ¾îÀÖÀ¸¸é
+				//ì—°ê²°ë˜ì–´ìˆëŠ”ì§€ í™•ì¸
+				if (go2(nx, ny, dest[map[now_x][now_y]-1][i]) && !visited[nx][ny])//ì—°ê²°ê°€ëŠ¥í•˜ê³  ë°©ë¬¸í•œì  ì—†ëŠ” ê²½ìš°
+				{//ì—°ê²°ë˜ì–´ìˆìœ¼ë©´
 					q.emplace(make_pair(nx, ny));
 					visited[nx][ny] = 1 + visited[now_x][now_y];
 				}
@@ -97,13 +97,13 @@ int main() {
 
 		go(r,c);
 
-		//ÁöÇÏÅë·Î visited¸¦ µ¹°í ÀÌµ¿½Ã°£ LÀÌÇÏÀÎ °æ¿ì°¡ ¸î °³ÀÎÁö Ãâ·Â
+		//ì§€í•˜í†µë¡œ visitedë¥¼ ëŒê³  ì´ë™ì‹œê°„ Lì´í•˜ì¸ ê²½ìš°ê°€ ëª‡ ê°œì¸ì§€ ì¶œë ¥
 		for (int i = 0; i < n; ++i)
 		{
 			for (int j = 0; j < m; ++j)
 			{
 				if (visited[i][j]>0 && visited[i][j] <= l)
-					//***0µµ °°ÀÌ ¼¼¾Æ¸®ºÎ›´Ù, ¤ÓÆ÷ÇÔÇØ¾ßÇÔ
+					//***0ë„ ê°™ì´ ì„¸ì•„ë¦¬ë¶€ÂÂ›ë‹¤, ã…£í¬í•¨í•´ì•¼í•¨
 				{
 					ans++;
 				}
@@ -115,7 +115,7 @@ int main() {
 		++test_case;
 		cout << "#" << test_case << " " << ans << endl;
 		
-		//ÃÊ±âÈ­
+		//ì´ˆê¸°í™”
 		ans = 0;
 		
 		/*for (int i = 0; i < n; ++i)
@@ -129,10 +129,10 @@ int main() {
 
 
 		for (int i = 0; i < n; i++) {
-			memset(map[i], 0, sizeof(int) * m); //¸ğµç °ª 0À¸·Î ÃÊ±âÈ­
+			memset(map[i], 0, sizeof(int) * m); //ëª¨ë“  ê°’ 0ìœ¼ë¡œ ì´ˆê¸°í™”
 			memset(visited[i], 0, sizeof(int) * m);
 		}
-		//ÃâÃ³: https://dahyeee.tistory.com/entry/c-2Â÷¿ø-¹è¿­-ÃÊ±âÈ­memset»ç¿ë
+		//ì¶œì²˜: https://dahyeee.tistory.com/entry/c-2ì°¨ì›-ë°°ì—´-ì´ˆê¸°í™”memsetì‚¬ìš©
 
 			
 	}
