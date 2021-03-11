@@ -50,16 +50,8 @@ int main() {
 		cout << 0 << endl;
 		return 0;
 	}
-	////이제 비교시작
-	//int read_idx = 0;
 
 	cmp(0, 1);//현재 정점은 1, 정점의 route에서의 idx는 0, 정점의 child의 route idx는 1(현재 정점의 size가 1이기 때문)
-
-	//for (int i = 0; i < route.size(); i++) {
-	//	if (i == 0) {
-	//		
-	//	}
-	//}
 
 	cout << ans << endl;
 	return 0;
