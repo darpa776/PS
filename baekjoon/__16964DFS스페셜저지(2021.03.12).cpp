@@ -4,9 +4,9 @@
 #include <algorithm>
 using namespace std;
 
-vector<int> graph[100000];
+vector<int> graph[100001];
 int n;
-int visited[100000];
+int visited[100001];
 vector<int> route;
 int ans = 1;
 int index = 0;
