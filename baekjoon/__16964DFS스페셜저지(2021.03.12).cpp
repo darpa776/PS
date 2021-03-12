@@ -34,6 +34,11 @@ void cmp() {
 		{
 			ans = 0;
 			return;
+			//또는
+			//ans=0;
+			//cout<<ans<<endl;
+			//exit(0);//main 함수가 아닌 곳에서 바로 전체 프로그램 
+			//만약 에러 난다면 라이브러리: stdlib.h
 		}
 	}
 }
