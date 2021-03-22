@@ -6,7 +6,7 @@
 using namespace std;
 
 int test_n, T;
-int N;//¹æÀÇ ÇÑº¯ÀÇ ±æÀÌ
+int N;//ë°©ì˜ í•œë³€ì˜ ê¸¸ì´
 int map[10][10];
 int map_num;
 int ans=987654321,_time;
@@ -15,28 +15,28 @@ enum State {
 };
 
 struct Stair{
-	int x, y;//°è´ÜÀÇ À§Ä¡
-	int length;//°è´Ü ±æÀÌ
-	int people=0;//°è´Ü¿¡ ¸î¸íÀÌ ÀÖ³ª
+	int x, y;//ê³„ë‹¨ì˜ ìœ„ì¹˜
+	int length;//ê³„ë‹¨ ê¸¸ì´
+	int people=0;//ê³„ë‹¨ì— ëª‡ëª…ì´ ìˆë‚˜
 };
 
 struct Person{
-	int x, y;//»ç¶÷ÀÇ À§Ä¡=»ç¶÷ ±¸ºĞ
-	int left_stair[2];//³²Àº °è´Ü¼ö
-	int left_move[2];//³²Àº ÀÌµ¿¼ö
+	int x, y;//ì‚¬ëŒì˜ ìœ„ì¹˜=ì‚¬ëŒ êµ¬ë¶„
+	int left_stair[2];//ë‚¨ì€ ê³„ë‹¨ìˆ˜
+	int left_move[2];//ë‚¨ì€ ì´ë™ìˆ˜
 	State state=none;
-	//°è´Ü ÀÔ±¸ µµÂø, °è´Ü ³»·Á°¡±â ½ÃÀÛ, ÀÌµ¿ ¿Ï·á
+	//ê³„ë‹¨ ì…êµ¬ ë„ì°©, ê³„ë‹¨ ë‚´ë ¤ê°€ê¸° ì‹œì‘, ì´ë™ ì™„ë£Œ
 };
 
-	//ÃâÃ³: https://boycoding.tistory.com/179 [¼Ò³âÄÚµù]
-vector<Stair> stair;//±¸Á¶Ã¼ º¤ÅÍ
-vector<Person> person;//±¸Á¶Ã¼ º¤ÅÍ
-vector<Stair> stair2;//±¸Á¶Ã¼ º¤ÅÍ
-vector<Person> person2;//±¸Á¶Ã¼ º¤ÅÍ
-int s;//°è´Ü±¸Á¶Ã¼º¤ÅÍ ÀÎµ¦½º
-int p;//»ç¶÷±¸Á¶Ã¼º¤ÅÍ ÀÎµ¦½º
+	//ì¶œì²˜: https://boycoding.tistory.com/179 [ì†Œë…„ì½”ë”©]
+vector<Stair> stair;//êµ¬ì¡°ì²´ ë²¡í„°
+vector<Person> person;//êµ¬ì¡°ì²´ ë²¡í„°
+vector<Stair> stair2;//êµ¬ì¡°ì²´ ë²¡í„°
+vector<Person> person2;//êµ¬ì¡°ì²´ ë²¡í„°
+int s;//ê³„ë‹¨êµ¬ì¡°ì²´ë²¡í„° ì¸ë±ìŠ¤
+int p;//ì‚¬ëŒêµ¬ì¡°ì²´ë²¡í„° ì¸ë±ìŠ¤
 int people_st[2];
-//ÀÌµ¿ÇÏ±â À§ÇØ ³²Àº ÇÔ¼ö °è»ê
+//ì´ë™í•˜ê¸° ìœ„í•´ ë‚¨ì€ í•¨ìˆ˜ ê³„ì‚°
 void movetime(int p)
 {
 	person[p].left_move[0] = abs(person[p].x - stair[0].x) + abs(person[p].y - stair[0].y);
@@ -48,16 +48,16 @@ int main()
 {
 	freopen("sample_input.txt", "r", stdin);
 	cin >> T;
-	//ÃÑ Å×½ºÆ® °³¼ö T
+	//ì´ í…ŒìŠ¤íŠ¸ ê°œìˆ˜ T
 	while (T > test_n)
 	{
-		cin >> N;//¹æÀÇ ÇÑº¯ÀÇ ±æÀÌ
+		cin >> N;//ë°©ì˜ í•œë³€ì˜ ê¸¸ì´
 		for(int i=0;i<N;++i)
 		{
 			for (int j = 0; j < N; ++j)
 			{
 				cin >> map_num;
-				if (map_num > 1)//°è´ÜÀÎ °æ¿ì, °è´Ü ÀÚ·á±¸Á¶¿¡ À§Ä¡ ÀúÀå
+				if (map_num > 1)//ê³„ë‹¨ì¸ ê²½ìš°, ê³„ë‹¨ ìë£Œêµ¬ì¡°ì— ìœ„ì¹˜ ì €ì¥
 				{
 					Stair ST;
 					stair.push_back(ST);
@@ -67,7 +67,7 @@ int main()
 					++s;
 				}
 					
-				else if(map_num==1)//»ç¶÷ÀÎ °æ¿ì, »ç¶÷ ÀÚ·á±¸Á¶¿¡ ÀúÀå
+				else if(map_num==1)//ì‚¬ëŒì¸ ê²½ìš°, ì‚¬ëŒ ìë£Œêµ¬ì¡°ì— ì €ì¥
 				{
 					Person PS;
 					person.push_back(PS);
@@ -82,29 +82,29 @@ int main()
 
 		for (int i = 0; i < p; ++i)
 		{
-			//ÀÌµ¿ÇÏ±â À§ÇØ ³²Àº ÇÔ¼ö °è»ê
+			//ì´ë™í•˜ê¸° ìœ„í•´ ë‚¨ì€ í•¨ìˆ˜ ê³„ì‚°
 			movetime(i);
 		}
 		
 		
-		int numcase=0;//¸ğµç °æ¿ì¸¦ ´Ù Å½»öÇÏ±â À§ÇÑ °æ¿ìÀÇ ¼ö==»ç¶÷¼ö^2
+		int numcase=0;//ëª¨ë“  ê²½ìš°ë¥¼ ë‹¤ íƒìƒ‰í•˜ê¸° ìœ„í•œ ê²½ìš°ì˜ ìˆ˜==ì‚¬ëŒìˆ˜^2
 		int case_num = pow(2, p);
 		while (numcase < case_num)
-		{//½ÇÁ¦ »ç¿ëÇÒ »ç¶÷, °è´Ü ±¸Á¶Ã¼ º¹»ç.
+		{//ì‹¤ì œ ì‚¬ìš©í•  ì‚¬ëŒ, ê³„ë‹¨ êµ¬ì¡°ì²´ ë³µì‚¬.
 			stair2 = stair;
 			person2 = person;
 
-			bitset<10> bitset(numcase);//bitset ¼±Á¤
+			bitset<10> bitset(numcase);//bitset ì„ ì •
 			//cout << std::bitset<10>(numcase) << ", " << numcase << endl;
-			//bitsetÅ©±â==»ç¶÷¼ö==person.size::º¯¼ö·Î ÁöÁ¤¾ÈµÇ¼­ ÃÖ´ë°ªÀÎ 10À¸·Î ÁöÁ¤
-			//[ÃâÃ³] ³í¸®¿¬»êÀÚ, ºñÆ®¿¬»êÀÚ °í±Ş | ÀÛ¼ºÀÚ »Ç²Ù
+			//bitsetí¬ê¸°==ì‚¬ëŒìˆ˜==person.size::ë³€ìˆ˜ë¡œ ì§€ì •ì•ˆë˜ì„œ ìµœëŒ€ê°’ì¸ 10ìœ¼ë¡œ ì§€ì •
+			//[ì¶œì²˜] ë…¼ë¦¬ì—°ì‚°ì, ë¹„íŠ¸ì—°ì‚°ì ê³ ê¸‰ | ì‘ì„±ì ë½€ê¾¸
 
-			//bitset´ë·Î »ç¶÷µéÀÌ °¥ °è´Ü Á¤ÇÏ±â
-			//person[0]Àº bitset[9]ÀÇ °ªÀ» ÃëÇÑ´Ù.person[p](¸¶Áö¸· »ç¶÷)Àº bitset[6]ÀÇ °ªÀ» ÃëÇÑ´Ù.
+			//bitsetëŒ€ë¡œ ì‚¬ëŒë“¤ì´ ê°ˆ ê³„ë‹¨ ì •í•˜ê¸°
+			//person[0]ì€ bitset[9]ì˜ ê°’ì„ ì·¨í•œë‹¤.person[p](ë§ˆì§€ë§‰ ì‚¬ëŒ)ì€ bitset[6]ì˜ ê°’ì„ ì·¨í•œë‹¤.
 			//person index+ bitset index+1=10
 			//bitset index=9-person index
 			/*int wait_flag = 0;*/
-			int flag = 1;//´Ù ³»·Á¿ÔÀ¸¸é flag°¡ 1, 1¸íÀÌ¶óµµ ´ú³»·Á¿À¸é 0
+			int flag = 1;//ë‹¤ ë‚´ë ¤ì™”ìœ¼ë©´ flagê°€ 1, 1ëª…ì´ë¼ë„ ëœë‚´ë ¤ì˜¤ë©´ 0
 			while (_time>=0)
 			{
 				flag = 1;
@@ -115,7 +115,7 @@ int main()
 						if (person2[i].state == wait)
 							wait_flag = 1;
 					}*/
-					//´Ù ³»·Á ¿Ô´ÂÁö È®ÀÎ
+					//ë‹¤ ë‚´ë ¤ ì™”ëŠ”ì§€ í™•ì¸
 					if (person2[i].state != finish)//::none,arrive, down
 					{
 						flag = 0;
@@ -123,7 +123,7 @@ int main()
 							person2[i].left_move[bitset[i]]--;
 
 						else if (person2[i].left_move[bitset[i]] == 0)//person2[i].state == arrive or down
-							//°è´ÜÀ¸·Î ´Ù ÀÌµ¿ÇßÀ¸¸é, °è´ÜÀÇ ÇöÀçÀÎ¿ø ÆÄ¾ÇÈÄ ³»·Á°¡±â ½ÃÀÛ
+							//ê³„ë‹¨ìœ¼ë¡œ ë‹¤ ì´ë™í–ˆìœ¼ë©´, ê³„ë‹¨ì˜ í˜„ì¬ì¸ì› íŒŒì•…í›„ ë‚´ë ¤ê°€ê¸° ì‹œì‘
 						{
 							//none->arrive
 							if (person2[i].state == none)
@@ -190,7 +190,7 @@ int main()
 				}
 
 				if (flag)
-				{//´Ù ³»·Á¿ÔÀ¸¸é ´ä µµÃâ
+				{//ë‹¤ ë‚´ë ¤ì™”ìœ¼ë©´ ë‹µ ë„ì¶œ
 					if (_time-1 < ans)
 						ans = _time-1;
 					
@@ -198,7 +198,7 @@ int main()
 					{
 						person2[i].state = none;
 					}
-					//ÃÊ±âÈ­
+					//ì´ˆê¸°í™”
 					_time = 0;
 					numcase++;
 					break;
@@ -213,7 +213,7 @@ int main()
 		++test_n;
 		cout << "#" << test_n << " " << ans << endl;
 		
-		//ÃÊ±âÈ­
+		//ì´ˆê¸°í™”
 		ans = 987654321, _time=0, s = 0, p = 0;
 	}
 	return 0;
