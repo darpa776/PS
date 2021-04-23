@@ -78,6 +78,7 @@ int main() {
 		//질량=질량 합/5, 속력= 속력합/파이어볼 개수
 		for (int i = 1; i <= n; i++) {
 			for (int j = 1; j <= n; j++) {
+				
 				if (game_map[i][j].size() <2) continue;
 				int mass_sum = 0;
 				int speed_sum = 0;
@@ -107,9 +108,19 @@ int main() {
 			}
 		}
 		//파이어볼 방향: 모두 홀수나 짝수이면 1246, or not, 1357
-		//질량 0인 파이어볼은 소멸된다.
-		
 
+		//질량 0인 파이어볼은 소멸된다.
+		for (int i = 1; i <= n; i++) {
+			for (int j = 1; j <= n; j++) {
+				for (int l = 0; l < game_map[i][j].size(); l++) {
+					if (game_map[i][j][l].mass == 0) {
+						game_map[i][j].erase(game_map[i][j].begin() + l);
+						l--;
+					}
+
+				}
+			}
+		}
 		//초기화
 		for (int i = 1; i <= n; i++) {
 			for (int j = 1; j <= n; j++) {
