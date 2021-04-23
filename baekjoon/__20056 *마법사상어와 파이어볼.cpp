@@ -7,14 +7,13 @@ struct fireball {
 	int speed;//속력
 	int dir;//방향
 };
-vector<struct fireball> map[50][50];
-//vector<struct fireball> fireball;//질량 속력 방향
+vector<struct fireball> map[51][51];//**범위 확인 꼭...!
 int n, m;//파이어볼 m개 발사
 int k;//이동명령 횟수
 int dx[8] = {-1,-1,0,1,1,1,0,-1};//12시방향으로부터 시계방향으로
 int dy[8] = {0,1,1,1,0,-1,-1,-1};
 //game_map과 map이 따로 논다
-vector<struct fireball> game_map[50][50];
+vector<struct fireball> game_map[51][51];
 
 int main() {
 	cin >> n >> m >> k;
@@ -38,11 +37,14 @@ int main() {
 					struct fireball now = map[i][j][l];
 					int direction = map[i][j][l].dir;
 					int move = map[i][j][l].speed % n;
-
+				
+					if(move==0) {
+						game_map[i][j].push_back(now);
+						continue;
+					}
 					int nx = i + dx[direction];
 					int ny = j + dy[direction];
 					move--;
-
 					if (nx == 0)
 						nx = n;
 					if (ny == 0)
